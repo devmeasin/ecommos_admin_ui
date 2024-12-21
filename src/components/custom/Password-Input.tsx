@@ -28,7 +28,7 @@ const PasswordInput = ({ form, ...props }: { form: any }) => {
                 type={showPassword ? "text" : "password"} // Toggle type based on state
                 placeholder="Enter your password"
                 style={{ paddingRight: "40px" }} // Space for the icon
-                className="focus-visible:ring-0" // Custom styling
+                className="focus-visible:ring-0 dark:bg-gray-800 dark:border-gray-700 bg-white border-gray-300" // Custom styling
             />
             <div
                 style={{

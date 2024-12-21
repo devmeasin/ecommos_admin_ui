@@ -12,12 +12,14 @@ const getSelf = async () => {
 };
 
 export const Root = () => {
+
     const { setUser } = useAuthStore() as IAuthStore;
 
     const { data, isLoading } = useQuery({
         queryKey: ["self"],
         queryFn: getSelf,
         retry: 1,
+        refetchOnWindowFocus: false, // Prevents refetch when the window regains focus
     });
 
     useEffect(() => {

@@ -3,7 +3,7 @@ import { IAuthStore, useAuthStore } from "@/store";
 const ActivatedProfile = () => {
     const { user } = useAuthStore() as IAuthStore;
 
-    const textMessage = `আমার নাম ${user?.fullName}, এবং ফোন নম্বর: ${user?.phone}। আমি আপনাদের সফটওয়্যারটি ব্যবহার করতে আগ্রহী। আমার প্রতিষ্ঠানের নাম ${user?.companyName}। অনুগ্রহ করে আমার একাউন্টটি সক্রিয় করে দিন।`;
+    const textMessage = `আমার নাম ${user?.fullName}, এবং ফোন নম্বর: ${user?.phone}। আমি আপনাদের সফটওয়্যারটি ব্যবহার করতে আগ্রহী। অনুগ্রহ করে আমার একাউন্টটি সক্রিয় করে দিন।`;
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">

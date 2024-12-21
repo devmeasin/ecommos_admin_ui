@@ -30,8 +30,6 @@ export const AuthDashboard = () => {
         return <Navigate to="/onboarding/activate-profile" replace />;
     }
 
-
-
     return (
         <div>
 
