@@ -1,6 +1,7 @@
 import { CourierData } from "@/types";
 import { motion } from "framer-motion";
 import { CornerDownLeft, Package, Truck } from "lucide-react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 type TableReviewsProps = {
     courierData: CourierData;
@@ -109,8 +110,8 @@ const FraudSection = ({ courierData }: TableReviewsProps) => {
                                     className="grid grid-cols-5 gap-4 items-center p-2 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 text-center"
                                 >
                                     {/* Conditionally render the image source based on courier name */}
-                                    <img
-                                        src={`/assets/courier_img/${courier.toLowerCase()}.svg`} // Correct path
+                                    <LazyLoadImage effect="blur"
+                                        src={`/assets/images/courier_img/${courier.toLowerCase()}.svg`} // Correct path
                                         alt={courier}
                                         className="w-16 mx-auto filter dark:invert"
                                     />

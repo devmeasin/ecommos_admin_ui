@@ -13,6 +13,9 @@ import React from "react";
 import toast from "react-hot-toast";
 import { Link, Navigate } from "react-router-dom";
 
+import { getImageUrl } from "../config/helpers";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 const loginUser = async (userData: TCredentails) => {
     const { data } = await login(userData);
     return data;
@@ -93,7 +96,7 @@ export function LoginPageD3() {
                         <div className="xl:col-span-8 lg:col-span-7 col-span-12 bg-lightprimary dark:bg-lightprimary lg:block hidden relative overflow-hidden z-50">
                             <div className="flex justify-center h-screen items-center z-10 relative">
                                 <div className="xl:w-5/12 lg:w-10/12 xl:px-0 px-6">
-                                    <img alt="auth-bg" loading="lazy" decoding="async" data-nimg="1" className="w-full" src="https://modernize-tailwind-nextjs-main.vercel.app/_next/static/media/login-security.bea3357c.svg" />
+                                    <LazyLoadImage effect="blur" width="100%" height="100%" alt="auth-bg" loading="lazy" decoding="async" data-nimg="1" className="w-full" src={getImageUrl("auth", "shield")} />
                                 </div>
                             </div>
                         </div>
@@ -103,7 +106,7 @@ export function LoginPageD3() {
                             </div>
                             <div className="flex h-screen items-center px-3 lg:justify-start justify-center">
                                 <div className="max-w-[420px] w-full mx-auto">
-                                    <img className="w-1/4 mx-auto rounded-full " src="https://scontent.fdac184-1.fna.fbcdn.net/v/t39.30808-1/459162308_122110678058494044_1950926944491134667_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeFYi9m2oxkGPLOsFO7o4ITKkoS9aGAmxgaShL1oYCbGBqZSKxBbMhENT4heDRx6Irv04EgSBwp_kvDxo95JgKdw&_nc_ohc=SKIeWYa4uFgQ7kNvgFFPzU4&_nc_zt=24&_nc_ht=scontent.fdac184-1.fna&_nc_gid=Ao9QAsrYSeV4JeQ0WfeUZms&oh=00_AYDA_MqE0h-mELiohHZAoz4kIZhqVeImqGqsLKpTT5-eQQ&oe=676B94EA" alt="logo" />
+                                    <LazyLoadImage effect="blur" width="100%" height="100%" className="w-1/4 mx-auto rounded-full ring-2 dark:ring-white ring-yellow-500" src={getImageUrl("logos", "light")} alt="logo" />
                                     <h3 className="text-2xl font-bold my-3 text-center">Welcome to eCommOS</h3>
                                     {/* <p className="text-darklink text-sm font-medium">Your Admin Dashboard</p> */}
 

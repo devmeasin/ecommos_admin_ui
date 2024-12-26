@@ -12,6 +12,9 @@ import React from "react";
 import toast from "react-hot-toast";
 import { Link, Navigate } from "react-router-dom";
 
+import { getImageUrl } from "../config/helpers";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 const loginUser = async (userData: TCredentails) => {
     const { data } = await login(userData);
     return data;
@@ -92,7 +95,7 @@ export default function SignIn() {
                     <div className="flex h-screen flex-col items-center justify-center space-y-4 md:space-y-8 ">
                         <div className="flex w-full max-w-sm flex-col items-center space-y-4 rounded-xl border-transparent bg-white px-2 py-1 dark:bg-gray-700 md:w-8/12 md:border md:px-8 md:py-6 lg:w-5/12 lg:px-6 lg:shadow-xl dark:lg:border-black-400  dark:lg:shadow-[0_0_1200px_0] lg:dark:shadow-primary-400/20 xl:w-4/12 2xl:w-3/12 py-10x pt-5">
                             <Link to="/">
-                                <img className="w-1/4 mx-auto rounded-full " src="https://scontent.fdac184-1.fna.fbcdn.net/v/t39.30808-1/459162308_122110678058494044_1950926944491134667_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeFYi9m2oxkGPLOsFO7o4ITKkoS9aGAmxgaShL1oYCbGBqZSKxBbMhENT4heDRx6Irv04EgSBwp_kvDxo95JgKdw&_nc_ohc=SKIeWYa4uFgQ7kNvgFFPzU4&_nc_zt=24&_nc_ht=scontent.fdac184-1.fna&_nc_gid=Ao9QAsrYSeV4JeQ0WfeUZms&oh=00_AYDA_MqE0h-mELiohHZAoz4kIZhqVeImqGqsLKpTT5-eQQ&oe=676B94EA" alt="logo" />
+                                <LazyLoadImage effect="blur" width="100%" height="100%" className="w-1/4 mx-auto rounded-full ring-2 dark:ring-white ring-yellow-500" src={getImageUrl("logos", "light")} alt="logo" />
                             </Link>
                             <div>
                                 <h6 className="font-heading text-base font-medium">
@@ -119,7 +122,7 @@ export default function SignIn() {
                                         </label>
                                     </div>
 
-                                    <Button type="submit" className="w-full flex items-center justify-center px-2 py-3 font-semibold leading-6 text-md shadow rounded-xl text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150">
+                                    <Button type="submit" className="w-full flex items-center justify-center px-2 py-3 font-semibold leading-6 text-md shadow rounded-xl text-white transition ease-in-out duration-150">
                                         {isPending && <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
