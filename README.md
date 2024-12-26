@@ -1,21 +1,9 @@
-# Shadcn Admin Dashboard
+# eCommOS Admin Dashboard
 
-Admin Dashboard UI crafted with Shadcn and Vite. Built with responsiveness and accessibility in mind.
-
-![alt text](public/images/shadcn-admin.png)
-
-I've been creating dashboard UIs at work and for my personal projects. I always wanted to make a reusable collection of dashboard UI for future projects; and here it is now. While I've created a few custom components, some of the code is directly adapted from ShadcnUI examples.
-
-> This is not a starter project (template) though. I'll probably make one in the future.
 
 ## Features
 
 - Light/dark mode
-- Responsive
-- Accessible
-- Sidebar and header layouts
-- 10+ pages
-- Extra custom components
 
 ## Tech Stack
 
@@ -36,13 +24,13 @@ I've been creating dashboard UIs at work and for my personal projects. I always 
 Clone the project
 
 ```bash
-  git clone https://github.com/satnaing/shadcn-admin.git
+  git clone https://github.com/satnaing/ecommos_admin_ui.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd shadcn-admin
+  cd ecommos_admin_ui
 ```
 
 Install dependencies
@@ -59,8 +47,4 @@ Start the server
 
 ## Author
 
-Crafted with 🤍 by [@satnaing](https://github.com/satnaing)
-
-## License
-
-Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
+Crafted with 🧑‍💻 by [@devmeasin](https://github.com/devmeasin)
