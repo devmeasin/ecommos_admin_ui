@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Outlet } from "react-router-dom";
 import { AuthDashboard } from "./auth/AuthDashboard";
 import { NonAuth } from "./auth/NonAuth";
 import { NonVerified } from "./auth/NonVerified";
@@ -19,11 +19,13 @@ import UserCurrentActivePlan from "../pages/UserCurrentActivePlan";
 import { PaymentError } from "../pages/payment/PaymentError";
 import { PaymentSuccess } from "../pages/payment/PaymentSuccess";
 // import SignIn from "./pages/LoginPage2";
-import PricingSection from "../pages/PriceingPlan";
-import OrdersPage from "../pages/order/OrdersPage";
+import Apps from "@/features/apps";
+import Users from "@/features/users";
 import SignIn from "@/pages/LoginPage2";
 import { LoginPageD3 } from "@/pages/LoginPageD3";
 import { RegisterPageD2 } from "@/pages/RegisterPageD2";
+import PricingSection from "../pages/PriceingPlan";
+import OrdersPage from "../pages/order/OrdersPage";
 
 export const router = createBrowserRouter([
     {
@@ -52,6 +54,10 @@ export const router = createBrowserRouter([
                         element: <OrdersPage />,
                     },
                     {
+                        path: "customers",
+                        element: <Users />,
+                    },
+                    {
                         path: "test",
                         element: <TestPage />,
                     },
@@ -62,6 +68,20 @@ export const router = createBrowserRouter([
                     {
                         path: "analytics",
                         element: <ComingSoon />,
+                    },
+                    {
+                        path: "intigations",
+                        element: <Outlet />,
+                        children: [
+                            {
+                                path: "delivery-partners",
+                                element: <Apps />,
+                            },
+                            {
+                                path: "delivery-partners2",
+                                element: <Billing />,
+                            },
+                        ],
                     },
                     {
                         path: "billings",

@@ -27,13 +27,25 @@ export function ProfileDropdown() {
   const navigate = useNavigate(); // Initialize useNavigate
 
   const { mutate } = useMutation({
-      mutationFn: logOutUser,
-      onSuccess: () => {
-          logout();
-          navigate("/auth/login", { replace: true }); // Navigate to login
-          window.location.reload(); // Reload the page
-      },
+    mutationFn: logOutUser,
+    onSuccess: () => {
+      logout();
+      navigate("/auth/login", { replace: true }); // Navigate to login
+      window.location.reload(); // Reload the page
+    },
   });
+
+  const getInitials = (fullName?: string) => {
+    if (!fullName) return "";
+
+    const parts = fullName.trim().split(" ");
+
+    if (parts.length === 1) {
+      return parts[0].charAt(0).toUpperCase();
+    }
+
+    return `${parts[0].charAt(0)}${parts[parts.length - 1].charAt(0)}`.toUpperCase();
+  };
 
   return (
     <DropdownMenu>
@@ -42,8 +54,7 @@ export function ProfileDropdown() {
           <Avatar className='h-8 w-8'>
             <AvatarImage src='/avatars/01.png' alt='@shadcn' />
             <AvatarFallback>
-                {user?.fullName.split(" ")[0][0]}
-                {user?.fullName.split(" ")[1][0]}
+              {getInitials(user?.fullName)}
             </AvatarFallback>
           </Avatar>
         </Button>
@@ -51,11 +62,11 @@ export function ProfileDropdown() {
       <DropdownMenuContent className='w-56' align='end' forceMount>
         <DropdownMenuLabel className='font-normal'>
           <div className='flex flex-col space-y-1'>
-            <p className='text-sm font-medium leading-none'> 
+            <p className='text-sm font-medium leading-none'>
               {user?.fullName || " "}
             </p>
             <p className='text-xs leading-none text-muted-foreground'>
-               {user?.email || " "}
+              {user?.email || " "}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -68,9 +79,9 @@ export function ProfileDropdown() {
           </DropdownMenuItem>
           <Link to="/billings" >
             <DropdownMenuItem className='cursor-pointer'>
-            <CreditCard />
-            <span>Billing</span>
-                <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+              <CreditCard />
+              <span>Billing</span>
+              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
           <DropdownMenuItem className='cursor-pointer'>

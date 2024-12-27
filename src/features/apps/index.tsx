@@ -50,13 +50,13 @@ export default function Apps() {
   return (
     <>
       {/* ===== Top Heading ===== */}
-      <Header>
+      {/* <Header>
         <Search />
         <div className='ml-auto flex items-center gap-4'>
           <ThemeSwitch />
           <ProfileDropdown />
         </div>
-      </Header>
+      </Header> */}
 
       {/* ===== Content ===== */}
       <Main fixed>
