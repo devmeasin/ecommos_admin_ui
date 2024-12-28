@@ -1,4 +1,4 @@
-import { LinkProps } from '@tanstack/react-router'
+import { LinkProps } from 'react-router-dom'
 
 interface User {
   name: string

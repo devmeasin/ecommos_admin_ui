@@ -1,14 +1,22 @@
 import {
+  IconBasketHeart,
+  IconBrandAppgallery,
+  IconCodeAsterisk,
+  IconCurrencyDogecoin,
+  IconGitCherryPick,
   IconHelp,
   IconLayoutDashboard,
-  IconPackages,
+  IconPoo,
   IconSettings,
+  IconSettingsCode,
+  IconShoppingBagHeart,
+  IconShoppingBagPlus,
   IconTool,
+  IconTruckDelivery,
   IconUserCog,
   IconUsers,
 } from '@tabler/icons-react'
 import {
-  BadgeJapaneseYen,
   Command,
   KeyRound,
   PackagePlus,
@@ -28,9 +36,9 @@ export const sidebarData: SidebarData = {
   },
   teams: [
     {
-      name: 'Shadcn Admin',
+      name: 'eCommOS',
       logo: Command,
-      plan: 'Vite + ShadcnUI',
+      plan: 'free + plan',
     },
   ],
   navGroups: [
@@ -50,7 +58,12 @@ export const sidebarData: SidebarData = {
         {
           title: 'Orders',
           url: '/sales-orders',
-          icon: BadgeJapaneseYen,
+          icon: IconShoppingBagPlus,
+        },
+        {
+          title: 'Products',
+          url: '/products',
+          icon: IconBrandAppgallery,
         },
         {
           title: 'Customers',
@@ -58,30 +71,19 @@ export const sidebarData: SidebarData = {
           icon: IconUsers,
         },
         {
-          title: 'Packages',
-          url: '/packages',
-          icon: PackagePlus,
-        },
-        {
-          title: 'Billings',
-          icon: ReceiptIndianRupee,
+          title: 'Channels',
+          icon: IconGitCherryPick,
           items: [
             {
-              title: 'Payment & Invoices',
-              url: '/billings',
-              icon: ReceiptText,
+              title: 'eCommerce CH+',
+              url: '/intigations/ecommerce-channels',
+              icon: IconCodeAsterisk,
             },
             {
-              title: 'Current Active Plan',
-              url: '/current_active_plan',
-              icon: ShipWheel,
+              title: 'Delivery Partners',
+              url: '/intigations/delivery-partners',
+              icon: IconTruckDelivery,
             },
-          ],
-        },
-        {
-          title: 'Integrations',
-          icon: Unplug,
-          items: [
             {
               title: 'API & Plugins',
               url: '/api_key',
@@ -89,11 +91,17 @@ export const sidebarData: SidebarData = {
             },
           ],
         },
-        {
-          title: 'Apps',
-          url: '/intigations/delivery-partners',
-          icon: IconPackages,
-        },
+        // {
+        //   title: 'Channels',
+        //   icon: IconPlugConnected,
+        //   items: [
+        //     {
+        //       title: 'Apps',
+        //   url: '/intigations/delivery-partners',
+        //   icon: IconPackages,
+        //     }
+        //   ]
+        // },
       ],
     },
     // {
@@ -174,6 +182,27 @@ export const sidebarData: SidebarData = {
               title: 'Account',
               url: '/settings/account',
               icon: IconTool,
+            },
+          ],
+        },
+        {
+          title: 'Packages',
+          url: '/packages',
+          icon: IconPoo,
+        },
+        {
+          title: 'Billings',
+          icon: ReceiptIndianRupee,
+          items: [
+            {
+              title: 'Payment & Invoices',
+              url: '/billings',
+              icon: ReceiptText,
+            },
+            {
+              title: 'Current Active Plan',
+              url: '/current_active_plan',
+              icon: ShipWheel,
             },
           ],
         },
