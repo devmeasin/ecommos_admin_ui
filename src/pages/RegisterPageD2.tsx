@@ -123,6 +123,14 @@ export function RegisterPageD2() {
                                 <div className="max-w-[420px] w-full mx-auto">
                                     <LazyLoadImage effect="blur" width="100%" height="100%" className="w-1/4 mx-auto rounded-full ring-2 dark:ring-white ring-yellow-500" src={getImageUrl("logos", "light")} alt="logo" />
                                     <h3 className="text-2xl font-bold my-3 text-center">Welcome to eCommOS</h3>
+                                    <div
+                                        className="h-1 sm:w-2/3  m-auto text-[#ccc] my-2"
+                                        role="separator"
+                                        style={{
+                                            background: "linear-gradient(90deg, currentcolor 4px, transparent 4px) 50% 50% / 8px 1px repeat-x",
+                                        
+                                        }}
+                                    ></div>
                                     {/* <p className="text-darklink text-sm font-medium">Your Admin Dashboard</p> */}
                                     <form onSubmit={handleSubmit} autoComplete="off">
                                         <div className="grid gap-4">
