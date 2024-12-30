@@ -1,3 +1,5 @@
+
+import CreateOrderDrawer from "@/components/Channel/CreateOrderDrawer";
 import { Layout } from "@/components/custom/Layout";
 import { Button } from "@/components/ui/button";
 import { IconSettingsCode } from "@tabler/icons-react";
@@ -48,11 +50,16 @@ const EcommerceChannels = () => {
                             <Button
                                 size="sm"
                                 className="h-8"
+                                onClick={() => setIsChecked(true)}
                             >
                                 <IconSettingsCode className="h-4 w-4" />
                                 Add Channel
                             </Button>
                         </div>
+
+                        <CreateOrderDrawer open={isChecked} onClose={() => setIsChecked(!isChecked)} />
+                        {/* <TransactionDetails open={isChecked} onClose={() => setIsChecked(!isChecked)} />; */}
+
                     </div>
 
                     <div>

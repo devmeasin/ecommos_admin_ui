@@ -47,6 +47,18 @@ export const getSingleOrder = (orderId: string) => api.get(`/orders/${orderId}`)
 
 export const changeOrderStatus = (orderId: string , status: string) => api.patch(`orders/${orderId}/status`, { status });
 
+// Channels 
+
+export const getChannels = () => api.get("/channels");
+
+export const getChannelById = (id: string) => api.get(`/channels/${id}`);
+
+export const registerWoocommerceChannel = (data: object) => api.post("/webhooks/woocommerce/register", data);
+
+export const updateChannel = (id: string, data: any) => api.patch(`/channels/${id}`, data);
+
+export const deleteChannel = (id: string) => api.delete(`/channels/${id}`);
+
 // Api Secret Key Request
 
 export const fetchByApiKey = () => api.get("/api-secret");

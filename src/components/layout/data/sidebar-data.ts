@@ -1,30 +1,24 @@
 import {
-  IconBasketHeart,
   IconBrandAppgallery,
   IconCodeAsterisk,
-  IconCurrencyDogecoin,
   IconGitCherryPick,
   IconHelp,
   IconLayoutDashboard,
   IconPoo,
   IconSettings,
-  IconSettingsCode,
-  IconShoppingBagHeart,
   IconShoppingBagPlus,
   IconTool,
   IconTruckDelivery,
   IconUserCog,
-  IconUsers,
+  IconUsers
 } from '@tabler/icons-react'
 import {
   Command,
   KeyRound,
-  PackagePlus,
   ReceiptIndianRupee,
   ReceiptText,
   ShieldCheck,
-  ShipWheel,
-  Unplug,
+  ShipWheel
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
