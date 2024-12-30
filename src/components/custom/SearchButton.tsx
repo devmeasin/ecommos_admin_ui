@@ -45,25 +45,27 @@ export const SearchButton: React.FC<SearchButtonProps> = ({
                     inputMode="numeric"
                     placeholder="01XXXXXXXX"
                     value={form.values.customer_number}
-                    onChange={(event) =>
-                        form.setFieldValue(
-                            "customer_number",
-                            event.currentTarget.value,
-                        )
-                    }
+                    onChange={(event) => {
+                        const value = event.currentTarget.value;
+
+                        // Allow only numeric input and ensure length does not exceed 11 digits
+                        if (/^\d*$/.test(value) && value.length <= 11) {
+                            form.setFieldValue("customer_number", value);
+                        }
+                    }}
                     onKeyDown={handleKeyDown} // Handle Enter key press
                     className="bg-transparent border-none outline-none w-full text-gray-900 dark:text-white"
                     disabled={isDisabled} // Disable input if the button is disabled
                 />
+
                 {/* Search button */}
                 <button
                     type="submit"
                     onClick={(event) => handleSubmit(event)}
                     className={`flex items-center justify-center p-2 ml-2 rounded-r-2xl px-5 
-                        ${
-                            isDisabled
-                                ? "bg-gray-500 cursor-not-allowed"
-                                : "bg-blue-500 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 text-white"
+                        ${isDisabled
+                            ? "bg-gray-500 cursor-not-allowed"
+                            : "bg-blue-500 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 text-white"
                         }`}
                     disabled={isDisabled} // Disable the button
                 >
