@@ -2,43 +2,52 @@
 import CreateOrderDrawer from "@/components/Channel/CreateOrderDrawer";
 import { Layout } from "@/components/custom/Layout";
 import { Button } from "@/components/ui/button";
+import { fetchChannels } from "@/http/api";
 import { IconSettingsCode } from "@tabler/icons-react";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
+const getAllChannels = async () => {
+    const { data } = await fetchChannels();
+    return data;
+};
+
+export interface IChannel {
+    credentials: {
+        key: string;
+        secret: string;
+    };
+    _id: string;
+    companyId: string;
+    platform: string; // e.g., 'wooCommerce', 'shopify', etc.
+    name: string;
+    channelName: string; // The name of the channel
+    storeUrl: string; // URL of the store
+    eventTypes: string[]; // Array of event types the webhook is subscribed to
+    deliveryUrl: string; // Endpoint where webhook events are delivered
+    webhookSecret: string; // Secret used for validating webhook events
+    integrationId: string; // Comma-separated IDs for integration
+    enabled: boolean; // Whether the webhook is enabled
+}
+
+
 const EcommerceChannels = () => {
-    const integrations = [
-        {
-            name: "WooCommerce",
-            description: "Seamless collaboration and document management.",
-            logo: "https://app.nuport.io/img/woocommerce.svg",
-            alt: "Microsoft Office 365 logo",
-        },
-        {
-            name: "Zoom",
-            description: "For conducting virtual meetings and interviews.",
-            logo: "https://finance-template.alignui.com/images/major-brands/zoom.svg",
-            alt: "Zoom logo",
-        },
-        {
-            name: "Slack",
-            description: "For team communication and real-time collaboration.",
-            logo: "https://finance-template.alignui.com/images/major-brands/dropbox.svg",
-            alt: "Slack logo",
-        },
-        {
-            name: "Trello",
-            description: "For task management and project collaboration.",
-            logo: "https://finance-template.alignui.com/images/major-brands/asana.svg",
-            alt: "Trello logo",
-        },
-    ];
+
+    const { data = [], isLoading } = useQuery({
+        queryKey: ["channels"],
+        queryFn: getAllChannels,
+        staleTime: 30 * 60 * 2000,
+    });
+
+    const [isOpen, setIsOpen] = useState(false);
 
     const [isChecked, setIsChecked] = useState(false);
 
-    const handleToggle = () => {
+    const handleToggle = (e) => {
+        e.stopPropagation();
         setIsChecked(!isChecked);
     };
-
+    if(isLoading) return <div>Loading...</div>
     return (
         <Layout >
             <Layout.Body>
@@ -50,35 +59,32 @@ const EcommerceChannels = () => {
                             <Button
                                 size="sm"
                                 className="h-8"
-                                onClick={() => setIsChecked(true)}
+                                onClick={() => setIsOpen(!isOpen)}
                             >
                                 <IconSettingsCode className="h-4 w-4" />
                                 Add Channel
                             </Button>
                         </div>
 
-                        <CreateOrderDrawer open={isChecked} onClose={() => setIsChecked(!isChecked)} />
+                        <CreateOrderDrawer open={isOpen} onClose={() => setIsOpen(!isOpen)} />
                         {/* <TransactionDetails open={isChecked} onClose={() => setIsChecked(!isChecked)} />; */}
 
                     </div>
 
                     <div>
                         <div className="flex flex-col gap-3 mt-3">
-                            {integrations.map((integration, index) => (
-
-
-                                <label
+                            {data?.channels?.map((channel: IChannel, index : number) => (
+                                <div
                                     key={index}
-                                    className="relative cursor-pointer rounded-xl bg-white-0 p-4 shadow-regular-xs ring-1 ring-inset ring-stroke-soft-200"
+                                    className="relative cursor-pointer rounded-xl bg-white-0 p-4 shadow-regular-xs ring-1 ring-inset ring-slate-300 dark:ring-slate-900"
                                 >
-                                    <div className="grid gap-4 sm:flex sm:items-center sm:gap-3 justify-between">
+                                    <div className="grid gap-4 sm:flex sm:items-center sm:gap-3 sm:justify-between">
 
                                         <div className="flex items-center gap-3.5">
                                             <button
                                                 type="button"
                                                 className="group/switch block h-5 w-8 shrink-0 p-0.5 absolute right-4 top-4 md:right-36 md:top-auto"
-                                                onClick={handleToggle}
-                                                aria-checked={isChecked}
+                                                onClick={(e) => handleToggle(e)}
                                             >
                                                 <div
                                                     className={`h-4 w-8 rounded-full p-0.5 transition duration-200 ease-out ${isChecked ? "bg-primary" : "bg-[#dfdddd] dark:bg-slate-600"
@@ -96,20 +102,23 @@ const EcommerceChannels = () => {
                                                     ></span>
                                                 </div>
                                             </button>
-                                            <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-bg-white-0 ring-1 ring-inset ring-stroke-soft-200">
-                                                <img src={integration.logo} className="size-6" alt={integration.alt} />
+                                            <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-bg-white-0 ring-1 ring-inset ring-slate-300 dark:ring-slate-900">
+                                                <img src={'/assets/images/channels/woocommerce.png'} className="size-6" alt={channel?.name} />
                                             </div>
                                             <div className="space-y-1">
-                                                <div className="flex items-center gap-1 text-label-sm font-semibold">
-                                                    <span>{integration.name}</span>
+                                                <div className="flex items-center gap-1 text-label-sm font-semibold ">
+                                                    <span>{channel?.name}</span>
                                                 </div>
-                                                <div className="text-paragraph-xs text-text-sub-600">{integration.description}</div>
+                                                <div className="flex items-center gap-1 text-label-sm font-semibold text-sm text-muted-foreground">
+                                                    <span>{channel?.channelName}</span>
+                                                </div>
+                                                {/* <div className="text-paragraph-xs text-text-sub-600">{channel?.description}</div> */}
                                             </div>
                                         </div>
 
                                         <div>
                                             <button
-                                                className="w-full relative inline-flex items-center justify-center whitespace-nowrap outline-none ring-slate-200 hover:bg-slate-50 dark:ring-slate-500 ring-1 dark:bg-slate-900  transition duration-200 ease-out focus:outline-none disabled:pointer-events-none disabled:bg-slate-50 disabled:text-text-disabled-300 disabled:ring-transparent  ring-inset h-9 gap-3 rounded-lg px-3 text-label-sm text-text-sub-600 shadow-regular-xs ring-stroke-soft-200  hover:text-text-strong-950 hover:shadow-none hover:ring-transparent focus-visible:text-text-strong-950 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 dark:bg-dark-200 dark:text-text-sub-300 dark:ring-dark-300 dark:hover:bg-dark-300 dark:hover:text-white dark:focus-visible:ring-dark-100 dark:focus-visible:text-white dark:disabled:bg-dark-100 dark:disabled:text-dark-disabled"
+                                                className="w-full relative inline-flex items-center justify-center whitespace-nowrap outline-none ring-slate-200 hover:bg-slate-50 dark:ring-slate-500 ring-1 dark:bg-slate-900  transition duration-200 ease-out focus:outline-none disabled:pointer-events-none disabled:bg-slate-50 disabled:text-text-disabled-300 disabled:ring-transparent  ring-inset h-9 gap-3 rounded-lg px-3 text-label-sm text-text-sub-600 shadow-regular-xs ring-stroke-soft-200  hover:text-text-strong-950 hover:shadow-none hover:ring-transparent focus-visible:text-text-strong-950 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 dark:text-text-sub-300  dark:hover:bg-dark-300 dark:hover:text-white dark:focus-visible:ring-dark-100 dark:focus-visible:text-white dark:disabled:bg-dark-100 dark:disabled:text-dark-disabled"
                                             >
                                                 <svg
                                                     viewBox="0 0 24 24"
@@ -125,7 +134,7 @@ const EcommerceChannels = () => {
                                             </button>
                                         </div>
                                     </div>
-                                </label>
+                                </div>
                             ))}
                         </div>
                     </div>

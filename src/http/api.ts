@@ -49,7 +49,7 @@ export const changeOrderStatus = (orderId: string , status: string) => api.patch
 
 // Channels 
 
-export const getChannels = () => api.get("/channels");
+export const fetchChannels = () => api.get("/webhooks/channels");
 
 export const getChannelById = (id: string) => api.get(`/channels/${id}`);
 
