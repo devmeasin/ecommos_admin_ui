@@ -51,7 +51,8 @@ export const changeOrderStatus = (orderId: string , status: string) => api.patch
 
 export const fetchChannels = () => api.get("/webhooks/channels");
 
-export const getChannelById = (id: string) => api.get(`/channels/${id}`);
+export const fetchChannelInfo = (channelId: string) => api.get(`/webhooks/channel/${channelId}`);
+export const getChannelById = (id: string) => api.get(`/webhooks/channel/${id}`);
 
 export const registerWoocommerceChannel = (data: object) => api.post("/webhooks/woocommerce/register", data);
 

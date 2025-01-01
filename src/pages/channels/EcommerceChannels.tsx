@@ -1,5 +1,7 @@
 
-import CreateOrderDrawer from "@/components/Channel/CreateOrderDrawer";
+import CreateChannel from "@/components/Channel/CreateChannel";
+import CreateOrderDrawer from "@/components/Channel/CreateChannel";
+import WooCommerceChannelSideBar from "@/components/Channel/WooCommerce/SideBarDraw";
 import { Layout } from "@/components/custom/Layout";
 import { Button } from "@/components/ui/button";
 import { fetchChannels } from "@/http/api";
@@ -42,12 +44,14 @@ const EcommerceChannels = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const [isChecked, setIsChecked] = useState(false);
+    const [openSideBar, setOpenSideBar] = useState(false);
 
     const handleToggle = (e) => {
         e.stopPropagation();
         setIsChecked(!isChecked);
     };
-    if(isLoading) return <div>Loading...</div>
+
+    if (isLoading) return <div>Loading...</div>
     return (
         <Layout >
             <Layout.Body>
@@ -66,14 +70,21 @@ const EcommerceChannels = () => {
                             </Button>
                         </div>
 
-                        <CreateOrderDrawer open={isOpen} onClose={() => setIsOpen(!isOpen)} />
+                        {/* <CreateOrderDrawer title="Channel Connect ✨" open={isOpen} onClose={() => setIsOpen(!isOpen)} /> */}
+
+                        <CreateChannel
+                            open={isOpen}
+                            onClose={() => setIsOpen(!isOpen)}
+                            platform="wooCommerce" // Dynamically switch between "wooCommerce", "shopify", "daraz"
+                        />
+
                         {/* <TransactionDetails open={isChecked} onClose={() => setIsChecked(!isChecked)} />; */}
 
                     </div>
 
                     <div>
                         <div className="flex flex-col gap-3 mt-3">
-                            {data?.channels?.map((channel: IChannel, index : number) => (
+                            {data?.channels?.map((channel: IChannel, index: number) => (
                                 <div
                                     key={index}
                                     className="relative cursor-pointer rounded-xl bg-white-0 p-4 shadow-regular-xs ring-1 ring-inset ring-slate-300 dark:ring-slate-900"
@@ -116,9 +127,12 @@ const EcommerceChannels = () => {
                                             </div>
                                         </div>
 
+                                        <WooCommerceChannelSideBar open={openSideBar} onClose={() => setOpenSideBar(!openSideBar)} title={channel?.name} platform="wooCommerce" channelId={channel?._id} />
+                                                        {channel?._id}
                                         <div>
                                             <button
                                                 className="w-full relative inline-flex items-center justify-center whitespace-nowrap outline-none ring-slate-200 hover:bg-slate-50 dark:ring-slate-500 ring-1 dark:bg-slate-900  transition duration-200 ease-out focus:outline-none disabled:pointer-events-none disabled:bg-slate-50 disabled:text-text-disabled-300 disabled:ring-transparent  ring-inset h-9 gap-3 rounded-lg px-3 text-label-sm text-text-sub-600 shadow-regular-xs ring-stroke-soft-200  hover:text-text-strong-950 hover:shadow-none hover:ring-transparent focus-visible:text-text-strong-950 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 dark:text-text-sub-300  dark:hover:bg-dark-300 dark:hover:text-white dark:focus-visible:ring-dark-100 dark:focus-visible:text-white dark:disabled:bg-dark-100 dark:disabled:text-dark-disabled"
+                                                onClick={() => setOpenSideBar(!openSideBar)}
                                             >
                                                 <svg
                                                     viewBox="0 0 24 24"
