@@ -127,8 +127,8 @@ const EcommerceChannels = () => {
                                             </div>
                                         </div>
 
-                                        <WooCommerceChannelSideBar open={openSideBar} onClose={() => setOpenSideBar(!openSideBar)} title={channel?.name} platform="wooCommerce" channelId={channel?._id} />
-                                                        {channel?._id}
+                                        <WooCommerceChannelSideBar open={openSideBar} onClose={() => setOpenSideBar(!openSideBar)} title={channel?.name}  channelId={channel?._id} channelData={channel} />
+
                                         <div>
                                             <button
                                                 className="w-full relative inline-flex items-center justify-center whitespace-nowrap outline-none ring-slate-200 hover:bg-slate-50 dark:ring-slate-500 ring-1 dark:bg-slate-900  transition duration-200 ease-out focus:outline-none disabled:pointer-events-none disabled:bg-slate-50 disabled:text-text-disabled-300 disabled:ring-transparent  ring-inset h-9 gap-3 rounded-lg px-3 text-label-sm text-text-sub-600 shadow-regular-xs ring-stroke-soft-200  hover:text-text-strong-950 hover:shadow-none hover:ring-transparent focus-visible:text-text-strong-950 focus-visible:shadow-button-important-focus focus-visible:ring-stroke-strong-950 dark:text-text-sub-300  dark:hover:bg-dark-300 dark:hover:text-white dark:focus-visible:ring-dark-100 dark:focus-visible:text-white dark:disabled:bg-dark-100 dark:disabled:text-dark-disabled"

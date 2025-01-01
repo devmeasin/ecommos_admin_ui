@@ -12,12 +12,23 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { Button } from "../../ui/button";
 import WooCommerceChannel from "./index";
+import { useEffect, useState } from "react";
+import { Copy, Eye, EyeOff } from "lucide-react";
 
 interface CreateChannelProps {
     open: boolean;
     onClose: () => void;
     title: string;
-    platform: string,
+    channelData: {
+        name: string;
+        storeUrl: string;
+        deliveryUrl: string;
+        webhookSecret: string;
+        credentials: {
+            key: string;
+            secret: string;
+        };
+    };
     channelId: string
 }
 
@@ -36,27 +47,36 @@ export default function WooCommerceChannelSideBar({
     open,
     onClose,
     title,
-    platform,
+    channelData,
     channelId
 }: CreateChannelProps) {
 
+    const [showKey, setShowKey] = useState(false);
 
-    const {data} = useQuery({
+    const { data, isLoading, refetch } = useQuery({
         queryKey: ["channelInfo", channelId],
         queryFn: () => chanelInfoFetcher(channelId),
+        staleTime: 30 * 60 * 1000,
+        enabled: false,
     });
-    console.log(data)
+
+    useEffect(() => {
+        if (open && !data) {
+            refetch()
+        }
+    }, [open, data, refetch])
 
     const form = useForm({
         initialValues: {
-            name: "", // Start phone number with 0
-            storeUrl: "",
+            name: channelData?.name || "", // Start phone number with 0
+            storeUrl: channelData?.storeUrl || "",
             "credentials": {
-                "key": "",
-                "secret": ""
+                "key": channelData?.credentials.key || "",
+                "secret": channelData?.credentials.secret || "",
             }
         },
         validate: {
+
             name: (value) =>
                 value.length >= 3
                     ? null
@@ -72,6 +92,11 @@ export default function WooCommerceChannelSideBar({
 
         },
     });
+
+    const handleCopy = ( data : string ) => {
+        navigator.clipboard.writeText( data || "");
+        toast.success("🥚 Copied to clipboard");
+    };
 
 
     const { mutate, isPending } = useMutation({
@@ -103,6 +128,9 @@ export default function WooCommerceChannelSideBar({
         }
     };
 
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <Sheet open={open} onOpenChange={onClose} >
@@ -122,8 +150,46 @@ export default function WooCommerceChannelSideBar({
                                 Your Channel Info {title} 🥚
                             </div>
                             <div className="p-5">
-                        
-                                <WooCommerceChannel form={form} data={form.values} />
+                                <div>
+                                    <div className="flex items-center bg-gray-100 dark:bg-gray-700 p-2 rounded-lg w-full mb-2">
+                                        <input
+                                            type="text"
+                                            value={ import.meta.env.VITE_BACKEND_API_URL + channelData?.deliveryUrl}
+                                            readOnly
+                                            className="bg-transparent flex-grow outline-none text-gray-900 dark:text-gray-200"
+                                        />
+                                        <button onClick={() => handleCopy(import.meta.env.VITE_BACKEND_API_URL + channelData?.deliveryUrl)} className="ml-2">
+                                            <Copy className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                        </button>
+                                    </div>
+                                    <div className="flex items-center bg-gray-100 dark:bg-gray-700 p-2 rounded-lg w-full">
+                                        <input
+                                            type="text"
+                                            value={
+                                                showKey
+                                                    ? channelData?.webhookSecret // Full key when showKey is true
+                                                    : channelData?.webhookSecret
+                                                        ? `${channelData?.webhookSecret.slice(0, 10)} ************* ${channelData?.webhookSecret.slice(-4)}` // First 20 and last 4 chars when showKey is false
+                                                        : ""
+                                            }
+                                            readOnly
+                                            className="bg-transparent flex-grow outline-none text-gray-900 dark:text-gray-200"
+                                        />
+
+
+                                        <button onClick={() => setShowKey(!showKey)}>
+                                            {showKey ? (
+                                                <EyeOff className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                            ) : (
+                                                <Eye className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                            )}
+                                        </button>
+                                        <button onClick={() => handleCopy(channelData?.webhookSecret)} className="ml-2">
+                                            <Copy className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <WooCommerceChannel form={form} />
 
                             </div>
 

@@ -1,17 +1,12 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { registerWoocommerceChannel } from '@/http/api';
-import { useForm } from '@mantine/form';
-import { useMutation } from '@tanstack/react-query';
-import React from 'react'
-import toast from 'react-hot-toast';
 
 
-const WooCommerceChannel = ({form , id}) => {
+const WooCommerceChannel = ({form }: {form: any}) => {
 
     return (
         <div>
-            <div className="my-5">
+            <div className="mt-3">
                 <form
                     className="grid gap-4"
                 >
