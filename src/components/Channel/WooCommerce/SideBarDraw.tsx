@@ -98,7 +98,6 @@ export default function WooCommerceChannelSideBar({
         toast.success("🥚 Copied to clipboard");
     };
 
-
     const { mutate, isPending } = useMutation({
         mutationKey: ["registerWooChannel"],
         mutationFn: registerWooChannel,
