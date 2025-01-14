@@ -1,3 +1,37 @@
+/* @font-face {
+  font-family: PotroSansBangla;
+  src: url("/src/assets/fonts/PotroSansBangla-Regular.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: PotroSansBangla-medium;
+  src: url("/src/assets/fonts/PotroSansBangla-Medium.woff2") format('woff2');
+}
+
+
+@font-face {
+  font-family: PotroSansBangla-semi-bold;
+  src: url("/src/assets/fonts/PotroSansBangla-SemiBold.woff2") format('woff2');
+}
+
+
+@font-face {
+  font-family: PotroSansBangla-bold;
+  src: url("/src/assets/fonts/PotroSansBangla-Bold.woff2") format('woff2');
+}
+
+
+body {
+  font-family: 'PotroSansBangla-bold';
+} */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: "Hind Siliguri", serif;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

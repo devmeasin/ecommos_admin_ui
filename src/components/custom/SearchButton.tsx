@@ -62,14 +62,14 @@ export const SearchButton: React.FC<SearchButtonProps> = ({
                 <button
                     type="submit"
                     onClick={(event) => handleSubmit(event)}
-                    className={`flex items-center justify-center p-2 ml-2 rounded-r-2xl px-5 
+                    className={`w-10/12 flex items-center justify-center p-1.5 ml-2 rounded-r-2xl font-medium
                         ${isDisabled
-                            ? "bg-gray-500 cursor-not-allowed"
-                            : "bg-blue-500 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 text-white"
+                            ? "bg-gray-400 cursor-not-allowed text-muted-foreground"
+                            : "bg-primary text-primary-foreground hover:bg-primary/90 "}
                         }`}
                     disabled={isDisabled} // Disable the button
                 >
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center p-0">
                         {btnText}
                         {isWantBtn ? (
                             <MessagesSquare className="ml-2" size={20} />

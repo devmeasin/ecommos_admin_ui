@@ -88,7 +88,7 @@ function OrderComponent() {
       return fetchOrders(params);
     },
     staleTime: 20000,
-    keepPreviousData: true,
+    // keepPreviousData: true,
   });
 
 
@@ -98,9 +98,9 @@ function OrderComponent() {
     setDetailsDrawerOpen(true);
   };
 
-  if (isLoading) {
-    return <div>Loading orders...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading orders...</div>;
+  // }
 
   // console.log(selectedOrder)
 
@@ -141,6 +141,7 @@ function OrderComponent() {
           <OrderList
             orders={ordersData?.data || []}
             onOrderClick={handleOrderClick}
+            isLoading={isLoading}
           // refetchOrders={refetch}
           />
         </div>

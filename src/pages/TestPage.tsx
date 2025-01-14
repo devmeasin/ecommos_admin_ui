@@ -1,3 +1,4 @@
+import { PrimaryLoader } from "@/components/Loader";
 import PaymentComponent from "@/components/Payment";
 import PaymentButton from "@/components/TestCom";
 
@@ -7,6 +8,7 @@ export const TestPage = () => {
             {/* <ForgotPassword /> */}
             <PaymentButton />
             <PaymentComponent />
+            <PrimaryLoader/>
         </div>
     );
 };

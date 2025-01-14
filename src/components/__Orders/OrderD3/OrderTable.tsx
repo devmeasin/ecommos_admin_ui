@@ -62,22 +62,19 @@ interface Order {
 }
 
 const fetchOrders = async (params: OrderQueryParams): Promise<OrdersResponse> => {
-  try {
-    const { data } = await getAllOrders({
-      page: params.page || 1,
-      limit: params.limit || 20,
-      status: params.status || "",
-      search: params.search || "",
-      from: params.from || "",
-      to: params.to || "",
-      sortBy: params.sortBy || "",
-      sortOrder: params.sortOrder || "",
-    });
-    return data;
-  } catch (error) {
-    console.error("Failed to fetch orders", error);
-    throw error;
-  }
+
+  const { data } = await getAllOrders({
+    page: params.page || 1,
+    limit: params.limit || 20,
+    status: params.status || "",
+    search: params.search || "",
+    from: params.from || "",
+    to: params.to || "",
+    sortBy: params.sortBy || "",
+    sortOrder: params.sortOrder || "",
+  });
+  return data;
+
 };
 
 const columns: ColumnDef<Order>[] = [

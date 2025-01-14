@@ -54,7 +54,7 @@ const OrderStatusTab = ({ refetch_func, setSearchParams } : OrderStatusTabProps)
     return (
         <div className="w-full mx-auto space-y-6">
             {/* Tabs */}
-            <div className="border-b border-gray-300">
+            <div className="border-b border-gray-300 dark:border-gray-600">
                 <ul className="flex overflow-x-auto items-center gap-2 text-sm font-medium no-scrollbar">
                     {tabs.map((tab, index) => (
                         <li key={index} className="flex">

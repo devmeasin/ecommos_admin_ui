@@ -19,16 +19,22 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 
+import notfoundAnimationData from "@/assets/noorder.json";
+import Lottie from "react-lottie-player";
+import { PrimaryLoader } from "../Loader";
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   onRowClick?: (data: TData) => void;
+  isLoading: boolean
 }
 
 export function OrdersTable<TData, TValue>({
   columns,
   data,
   onRowClick,
+  isLoading
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -77,10 +83,10 @@ export function OrdersTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   className={`cursor-pointer transition-colors duration-150 ${rowIndex < table.getRowModel().rows.length - 1
-                      ? "border-b border-dashed border-gray-300 dark:border-gray-600"
-                      : ""
+                    ? "border-b border-dashed border-gray-300 dark:border-gray-600"
+                    : ""
                     } hover:bg-gray-50 dark:hover:bg-gray-800`}
-                   onClick={() => onRowClick?.(row.original as TData)}
+                  onClick={() => onRowClick?.(row.original as TData)}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
@@ -101,7 +107,32 @@ export function OrdersTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center text-gray-500 dark:text-gray-400"
                 >
-                  No results found.
+
+                  {isLoading ? (
+                    <div className="h-[500px] flex items-center justify-center">
+                      <PrimaryLoader />
+                    </div>
+                  ) : (
+                    <div className="text-center my-20">
+                      <Lottie
+                        loop
+                        animationData={notfoundAnimationData}
+                        play
+                        style={{ width: 250, height: 250, margin: "auto" }}
+                      />
+                      <h3 className="mt-3 text-2xl font-bold tracking-tight text-muted-foreground text-gray-900 dark:text-white sm:text-2xl">
+                        🥚 No Data Found!.
+                      </h3>
+
+                      <div className="mt-10 flex items-center justify-center gap-x-6">
+
+                      </div>
+                    </div>
+                  )
+
+                  }
+
+
                 </TableCell>
               </TableRow>
             )}

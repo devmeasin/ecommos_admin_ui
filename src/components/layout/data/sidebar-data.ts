@@ -65,12 +65,12 @@ export const sidebarData: SidebarData = {
           icon: IconUsers,
         },
         {
-          title: 'Channels',
+          title: 'Intigations',
           icon: IconGitCherryPick,
           items: [
             {
-              title: 'eCommerce CH+',
-              url: '/intigations/ecommerce-channels',
+              title: 'Channels',
+              url: '/intigations/channels',
               icon: IconCodeAsterisk,
             },
             {

@@ -75,12 +75,13 @@ export const FraudChecker = () => {
             <div className="md:mt-16 lg:mt-16 flex flex-col justify-center items-center h-auto">
                 <div className="flex flex-col justify-center items-center mb-10">
                     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                        <h2 className=" text-blue-500 dark:text-white mt-5 mb-2 text-center text-xl font-bold leading-9 tracking-tight ">
+                        <h2 className=" text-blue-500 dark:text-white mt-5 mb-2 text-center text-xl font-semibold leading-9 tracking-tight">
                             কাস্টমারের ফোন নাম্বার লিখুনঃ 🕵️‍♂️
                         </h2>
                     </div>
                     <SearchButton
                         form={form}
+                        btnText="রিপোর্ট দেখুন"
                         handleSubmit={handleSubmit}
                         isDisabled={isPending}
                     />

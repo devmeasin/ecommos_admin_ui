@@ -7,14 +7,15 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 interface OrderListProps {
   orders: Order[];
   onOrderClick?: (order: Order) => void;
+  isLoading: boolean;
   // refetchOrders?: () => void
 }
 
-export function OrderList({ orders, onOrderClick }: OrderListProps) {
+export function OrderList({ orders, onOrderClick, isLoading }: OrderListProps) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   if (isDesktop) {
-    return <OrdersTable columns={columns} data={orders} onRowClick={onOrderClick} />;
+    return <OrdersTable columns={columns} data={orders} onRowClick={onOrderClick} isLoading={isLoading} />;
   }
 
   return (

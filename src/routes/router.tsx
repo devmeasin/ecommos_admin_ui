@@ -26,7 +26,8 @@ import { LoginPageD3 } from "@/pages/LoginPageD3";
 import { RegisterPageD2 } from "@/pages/RegisterPageD2";
 import PricingSection from "../pages/PriceingPlan";
 import OrdersPage from "../pages/order/OrdersPage";
-import EcommerceChannels from "@/pages/channels/ecommerceChannels";
+import EcommerceChannels from "@/pages/channels/EcommerceChannels";
+
 
 export const router = createBrowserRouter([
     {
@@ -75,7 +76,7 @@ export const router = createBrowserRouter([
                         element: <Outlet />,
                         children: [
                             {
-                                path: "ecommerce-channels",
+                                path: "channels",
                                 element: <EcommerceChannels />,
                             },
                             {

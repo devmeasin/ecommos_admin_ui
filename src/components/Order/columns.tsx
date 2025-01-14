@@ -221,13 +221,13 @@ export const columns: ColumnDef<Order>[] = [
             <p className="flex items-center gap-2">
               {/* <ShoppingBag className="w-4 h-4" /> */}
               <span
-                className="text-muted-foreground font-medium max-w-[9rem] truncate"
+                className="text-[13px] font-bold max-w-[10rem] truncate"
               >
                 {products[0]?.product?.name || ' '}
               </span>
             </p>
             <p className="flex items-center gap-2">
-              <span className="text-muted-foreground font-medium">QTY: {products[0]?.quantity || ''}</span>
+              <span className="text-muted-foreground font-medium text-[12px]">Qty: {products[0]?.quantity || ''}</span>
             </p>
             {/* <p className="flex items-center gap-2">
               <span className="text-muted-foreground font-medium">{products[0]?.name || ''}</span>
